@@ -13,13 +13,13 @@ storage_map = {}
 
 FORMS = [
     ("Exit", 0xC600),
-    #('Exit',    0xc640),
-    #('Boot',    0xc6f0),
-    #('Power',    0xc810),
-    #('Security',0xd140),
-    #('Advanced',0xd390),
-    #('Main',    0x106b0),
-    #('OEM',        0x10a20)
+    ('Exit',    0xc640),
+    ('Boot',    0xc6f0),
+    ('Power',    0xc810),
+    ('Security',0xd140),
+    ('Advanced',0xd390),
+    ('Main',    0x106b0),
+    ('OEM',        0x10a20)
 ]
 
 def fguid(s):
@@ -110,6 +110,7 @@ class FormOp(object):
     EFI_IFR_VARSTORE_OP        = 0x24
     EFI_IFR_VARSTORE_SELECT_OP = 0x25
     EFI_IFR_VARSTORE_SELECT_PAIR_OP  = 0x26
+    EFI_IFR_VARSTORE_DEVICE_OP  = 0x27
     EFI_IFR_LAST_OPCODE        = EFI_IFR_VARSTORE_SELECT_PAIR_OP
     EFI_IFR_OEM_OP             = 0xFE
     EFI_IFR_NV_ACCESS_COMMAND  = 0xFF
@@ -155,6 +156,7 @@ class FormOp(object):
         EFI_IFR_VARSTORE_OP        : 0,
         EFI_IFR_VARSTORE_SELECT_OP : 0,
         EFI_IFR_VARSTORE_SELECT_PAIR_OP : 0,
+        EFI_IFR_VARSTORE_DEVICE_OP : 0,
         EFI_IFR_LAST_OPCODE        : 0,
         EFI_IFR_OEM_OP             : 0,
         EFI_IFR_NV_ACCESS_COMMAND  : 0,
@@ -323,9 +325,9 @@ def dump_setup(pe):
         print
         print "Reading form '%s'"%fn, off
         f = Form(pe, off)
-        #f.showinfo(strings, ' ')
+        f.showinfo(strings, ' ')
         
-    #print "Storage map:"
-    #for k in sorted(storage_map.keys()):
-        #print " 0x%x: %s"%(k,storage_map[k])
+    print "Storage map:"
+    for k in sorted(storage_map.keys()):
+        print " 0x%x: %s"%(k,storage_map[k])
 

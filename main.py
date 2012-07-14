@@ -330,7 +330,7 @@ class BIOS(object):
         if not english_stringtable:
             raise RuntimeError
         
-        #~ english_stringtable.showinfo()
+        english_stringtable.showinfo()
         
         def create_form(location):
             location += form_magic_offset
@@ -346,13 +346,18 @@ class BIOS(object):
         # We've finally reached the bottom layer!
         # Now we just search for the location of the VT switch..
         for form in forms:
+            print
+            print "Reading a new form" # '%s'=%x" %(fn,location)
+	    form.showinfo( english_stringtable, ' ' )
+ 
             for opcode in form.fetch_opcodes(FormOp.EFI_IFR_ONE_OF_OP):
                 qid, width, pid, hid = unpack_from("<HBHH", opcode.payload)
                 prnt_string = english_stringtable[pid]
                 help_string = english_stringtable[hid]
                 args = (qid, width, prnt_string, help_string)
+                #print "**Location = 0x%03x<%d>, name='%s' help='%s'" % args
                 if "Vanderpool" in help_string:
-                    found = True
+                    # found = True
                     print "Location = 0x%03x<%d>, name='%s' help='%s'" % args
         
         if not found:
