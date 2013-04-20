@@ -1,7 +1,7 @@
 insyde-tools
 ============
 
-(Inactive) Tools for unpacking and modifying an InsydeH2O UEFI BIOS.
+Tools for unpacking and modifying an InsydeH2O UEFI BIOS.
 
 ## NOTICE
 
