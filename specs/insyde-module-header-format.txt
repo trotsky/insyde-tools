@@ -72,4 +72,5 @@ EFI_SECTION_RAW 0x19
 EFI_SECTION_PEI_DEPEX 0x1B
 
 Source: http://forums.mydigitallife.info/threads/11693-Insyde-module-headers
+Redistribution rights granted - refer to http://review.coreboot.org/#/c/1525/
 
